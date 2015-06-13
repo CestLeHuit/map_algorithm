@@ -44,7 +44,7 @@ bool loadfromfile(SDL_Renderer* renderer, SDL_Texture* &texture, std::string pat
 }
 
 std::vector<Tile> parse_map(std::string path, int &w, int &h) {
-    std::ifstream map("../SDLGE/map.txt");
+    std::ifstream map(path.c_str());
     std::string reader;
     std::vector<Tile> tilelist;
     std::vector<std::vector<int> > info;
@@ -203,7 +203,7 @@ int main(int argc, char* args[]) {
 
                 bool QUIT=false;
                 int map_w; int map_h;
-                std::vector<Tile> tile_layout=parse_map("../SDLGE/map.txt", map_w, map_h);
+                std::vector<Tile> tile_layout=parse_map("../map_algorithm/map.txt", map_w, map_h);
                 while(!QUIT) {
                     while(SDL_PollEvent(&Event)!=0) {
                         //exit statement
@@ -215,7 +215,7 @@ int main(int argc, char* args[]) {
                     SDL_SetRenderDrawColor(renderer_main, 255, 255, 255, 255);
                     SDL_RenderClear(renderer_main);
                     for(int i=0;i<tile_layout.size();i++) {
-                        tileSheet.render(renderer_main,tile_layout[i], 0, 0);
+                        tileSheet.render(renderer_main,tile_layout[i]);
                     }
                     SDL_RenderPresent(renderer_main);
                 }
