@@ -22,11 +22,13 @@ SDL_Surface* screenSurface;
 int SCREEN_WIDTH;
 int SCREEN_HEIGHT;
 
+//Tile parameters
 Tileset tileSheet;
 std::vector<Tile> tiles;
 
 //Helper Function-------------------------------------------------------------------------
 
+// Create texture from picture of given path
 bool loadfromfile(SDL_Renderer* renderer, SDL_Texture* &texture, std::string path) {
     SDL_Surface* loadedSurface=IMG_Load(path.c_str());
     if(loadedSurface==NULL) {
@@ -43,6 +45,7 @@ bool loadfromfile(SDL_Renderer* renderer, SDL_Texture* &texture, std::string pat
     }
 }
 
+//parses map from map.txt in order to render
 std::vector<Tile> parse_map(std::string path, int &w, int &h) {
     std::ifstream map("../SDLGE/map.txt");
     std::string reader;
@@ -75,6 +78,7 @@ std::vector<Tile> parse_map(std::string path, int &w, int &h) {
     return tilelist;
 }
 
+//initializes basic parameters
 bool CONFIG_INITIALIZER() {
     bool SUCCESS=true;
     std::ifstream CONFIG("../map_algorithm/config.txt");
@@ -147,6 +151,7 @@ bool SDL_INITIALIZER() {
     return SUCCESS;
 }
 
+//loads up all tiles
 bool TILE_INITIALIZER() {
     bool SUCCESS=true;
     std::ifstream TILES("../map_algorithm/tile_config.txt");
@@ -176,6 +181,7 @@ bool TILE_INITIALIZER() {
     return SUCCESS;
 }
 
+//closes all
 void CLOSE() {
     SDL_DestroyRenderer(renderer_main);
     SDL_DestroyWindow(window);
