@@ -193,6 +193,9 @@ void CLOSE() {
 }
 
 int main(int argc, char* args[]) {
+    std::string path;
+    std::cout << "Enter map location: ";
+    std::cin >> path;
     if(!CONFIG_INITIALIZER()) {
         printf("CONFIG could not be initialized\n");
     }
@@ -206,10 +209,9 @@ int main(int argc, char* args[]) {
             }
             else {
                 SDL_Event Event;
-
                 bool QUIT=false;
                 int map_w; int map_h;
-                std::vector<Tile> tile_layout=parse_map("../map_algorithm/map.txt", map_w, map_h);
+                std::vector<Tile> tile_layout=parse_map(path, map_w, map_h);
                 while(!QUIT) {
                     while(SDL_PollEvent(&Event)!=0) {
                         //exit statement
