@@ -1,0 +1,3 @@
+../SDLGE/Images/tiles.png
+0 Floor 0 0 24 24 0
+1 Wall 24 0 24 24 1
